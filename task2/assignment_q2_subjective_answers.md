@@ -10,10 +10,7 @@
 * **Optimizer:** full-batch GD, learning rate \(1\times10^{-6}\), max `300k` iterations.
 * **Convergence test:**
   
-  $$
-  \lVert \boldsymbol{\theta} - \boldsymbol{\theta}^{*} \rVert_{2} < 10^{-3}
-  \quad\text{(where }\boldsymbol{\theta}^{*}\text{ is the LS solution)}
-  $$
+  $\lVert \boldsymbol{\theta} - \boldsymbol{\theta}^{*} \rVert_{2} < 10^{-3} \quad\text{(where }\boldsymbol{\theta}^{*}\text{ is the LS solution)}$
 
 ---
 
