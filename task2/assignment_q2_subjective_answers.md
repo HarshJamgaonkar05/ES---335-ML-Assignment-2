@@ -3,11 +3,18 @@
 ### **1 Dataset and the Method Used**
 * **Data:** $y = 3x + 2 + \epsilon, \quad x \in [0, 1000]$ (large scale feature).
 * **Optimizer:** full-batch GD, learning rate $1 \times 10^{-6}$, max 300000 iterations.
-* **Convergence test:** $\|\boldsymbol{\theta} - \boldsymbol{\theta}^*\|_2 < 10^{-3}$ (where $\boldsymbol{\theta}^*$ is the Least Squares solution).
+* **Convergence test:**
+    $$
+  \lVert \boldsymbol{\theta} - \boldsymbol{\theta}^{*} \rVert_{2} < 10^{-3}
+  \quad\text{(where }\boldsymbol{\theta}^{*}\text{ is the LS solution)}
+  $$
 
 
 ### **2 Ground truth (closed-form)**
-* $\boldsymbol{\theta}^* = [b^*, w^*] \approx [2.2139, 2.9995]$.
+* 
+  $$
+  \boldsymbol{\theta}^{*} = [\,b^{*},\, w^{*}\,] \approx [\,2.2139,\, 2.9995\,].
+  $$
 
 
 ### **3 End of run (after 300k iterations)**
