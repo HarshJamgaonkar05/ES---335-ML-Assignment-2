@@ -24,5 +24,5 @@
 
 
 ### **5 Loss curve shape (MSE vs Interations curve)**
-* There's a **very large initial loss spike** (~$3.4 \times 10^6$) that **drops quickly** within a few steps.
+* There's a **very large initial loss spike** ($sim 3.4 \times 10^6$) that **drops quickly** within a few steps.
 * After the initial drop, the curve **looks flat** on a linear scale—progress still occurs, but it's too small to see without a log-scale plot.
