@@ -52,7 +52,7 @@
 - **Goal:** Remove guesswork about the learning rate and make GD **as fast as it can be without exploding**, while keeping everything else unchanged (no feature scaling).
 
 
-## What changed (method)
+## What changed
 
 - Calculated **L** from \(X^T X\) and set **η = 0.9 / L**.
 - Kept the same dataset (no feature scaling), full-batch GD, maximum 20k iterations, stop if the parameter distance to the least-squares solution drops below one-thousandth.
@@ -76,6 +76,44 @@
 ### 4) Interpretation
 - **η = 0.9 / L** is stability-optimal for the stiffest direction, so training is safe and as fast as possible **in that direction**.
 - But the problem remains **ill-conditioned**: directions with small curvature (notably the bias/intercept) still update **microscopically**, so the parameter distance stays large even though the MSE is already near the noise floor.
+
+# Observations — Full-batch GD after Z-score scaling of the feature
+
+### 1) Why we tried scaling
+- Earlier runs (no scaling) were **ill-conditioned**: x ranged from 0 to 1000, which made the problem very skewed → we needed a tiny learning rate, the intercept moved painfully slowly, and the distance to the least-squares solution never dropped below one-thousandth.
+- **Z-scoring the feature** (subtract mean, divide by standard deviation) balances curvature across directions, so gradient descent can take **much larger steps safely**.
+
+### 2) Setup
+- Only the **feature column** was standardized; the target **y** was left as is.
+- Full-batch GD with **learning rate 5e-2** (about **1000× larger** than before); same stopping rule based on parameter distance.
+
+### 3) Results 
+- **Closed-form solution on the scaled design:** intercept ≈ **1462.1412**, slope ≈ **816.7652**.  
+  *(Large numbers are expected because y was not centered while x was scaled.)*
+- **Converged** to the distance threshold in **136 iterations**.
+- **Final parameters:** intercept ≈ **1462.1405**, slope ≈ **816.7646**; **distance** ≈ **9.16×10⁻4**.
+- **Final MSE:** ≈ **0.959**, close to the noise level.
+
+### 4) Loss curve behavior (MSE vs Iterations Figure)
+- MSE drops **smoothly and rapidly**, with a steep early decline and a taper to a flat minimum by about **100–150 iterations**.
+- No instability or oscillation — clear evidence that scaling **reduced the condition number**, allowing a **large learning rate** to work well.
+
+### 5) Interpretation 
+
+- **Scaling made the problem well-conditioned.**  
+  After Z-scoring the feature, the gradients for the slope and the intercept are on comparable scales. As a result, **both parameters** move quickly toward their optima (not just the slope).
+
+- **Large intercept after scaling is a coordinate effect.**  
+  Because we did **not** center the target y, the optimal intercept on the scaled design is numerically large. This is only due to the choice of coordinates and **does not indicate a bad fit**.
+
+
+### 6) Comparison to unscaled runs
+
+- **Unscaled:** Required tens of thousands to hundreds of thousands of steps. The slope was roughly correct, but the **intercept crawled**, and the run failed the parameter-distance convergence test.
+
+- **Scaled:** Reached strict convergence in **136 steps** using a learning rate **orders of magnitude larger** than before.
+
+
 
   
 
