@@ -82,3 +82,45 @@
 - **Speed:** GD converges faster in terms of **steps** (`1208` vs `3233`).
 - **Stability:** Both methods are stable with curvature-aware learning rates. SGD remains noisier but still consistently descends towards the minimum.
 - **Compute:** One GD “step” processes the entire batch, whereas SGD counts a single sample update as a "step." Therefore, wall-clock time trade-offs will depend heavily on the specific implementation and hardware.
+
+
+# **Observations - Dataset2**
+
+**True minimizer (closed-form solution):**
+
+$$ \theta^* = [b^*, w^*] = [3.951, 2.682] $$
+
+This represents the best-fit line $y = 2.68x + 3.95$, which is consistent with the data-generation equation $y = 3x + 4 + \text{noise}$.
+
+### **1 Convergence behavior**
+
+-   **Full-batch Gradient Descent (GD):**
+    -   Converges smoothly in about **1,300 steps** ($1322.7 \pm 40.5$), reaching the $\epsilon$-neighborhood of the true minimizer.
+    -   The **loss decreases steadily** over epochs (from $\approx 7.3 \to 4.8$) with **no oscillations or divergence**.
+    -   The **trajectory** in the contour plot shows direct movement toward $\theta^*$ along nearly circular contours—indicating good conditioning and an appropriate learning rate.
+
+-   **Stochastic Gradient Descent (SGD):**
+    -   Requires significantly more updates (**~14,950 steps on average**, with high variance).
+    -   The **loss curve** is noisier but follows a clear downward trend, rapidly dropping in the first few epochs and flattening near convergence ($\approx 0.5$ MSE).
+    -   The path is more **zig-zag** due to the stochasticity of individual sample gradients.
+ 
+### **2 Geometric & optimization insights**
+- The **contour plots** are **nearly circular**, not elongated.
+- → This means the Hessian matrix $X^T X$ is **well-conditioned**; i.e., both the $b$ and $w$ directions have similar curvature.
+- As a result, the same learning rate ($\eta = 10^{-2}$) works stably without causing divergence.
+- The **parameter trajectories** (red lines) show **monotonic, stable movement** toward $\theta^*$. No oscillation or large overshoot appears—unlike in Dataset 1, where the curvature imbalance caused divergence.
+
+
+### **3 Why convergence is faster and more stable**
+- The $x$-values in Dataset 2 are small (from -1 to 1), and the slope is mild ($\sim 3$).
+- This keeps the gradient magnitudes moderate and the $X^T X$ matrix well-scaled.
+- Because of this, both GD and SGD experience **smaller gradient variance** and **better numerical conditioning**.
+- The loss function's surface (a quadratic bowl) is almost symmetric, allowing the same learning rate $\eta = 10^{-2}$ to perform well.
+
+
+### **4 Comparing GD vs SGD**
+
+| Method | Convergence Speed | Stability | Trajectory | Comments |
+| :--- | :--- | :--- | :--- | :--- |
+| **Full-batch GD** | ~1.3 k steps | Very smooth | Straight path toward $\theta^*$ | Deterministic, stable convergence |
+| **SGD (bs = 1)** | ~15 k steps (noisy) | Stable but slower | Zig-zag path | Higher variance due to sampling |
