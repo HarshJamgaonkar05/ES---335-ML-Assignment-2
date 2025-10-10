@@ -1,7 +1,7 @@
 ## **Observations — Dataset 1 (Vanilla GD & SGD)**
 
 **Ground truth**
-- Closed-form minimizer: $\theta^{*} = [b^{*}, w^{*}] \approx[0.951, 99.984]$.
+- Closed-form minimizer: $$\theta^{*} = [b^{*}, w^{*}] \approx[0.951, 99.984]$$.
 
 
 #### **1) Non-convergence & step cap**
