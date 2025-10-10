@@ -56,7 +56,7 @@ Classical momentum was implemented to help accelerate convergence, especially in
     * Simultaneously, it **accumulates speed** along the flat direction (the `b` direction), acting like a spectral preconditioner.
     * The deterministic (noise-free) gradients allow the velocity term to stabilize and align with the valley floor, leading to fast convergence despite visible overshoots.
 
-### **3.3 SGD with Momentum: Velocity Explosion **
+### **3.3 SGD with Momentum: Velocity Explosion**
 * **Observation:** With the same hyperparameters, SGD with momentum **did not converge**. The parameters exploded to astronomical scales ($10^{28}$) almost immediately.
 * **Why it blows up:**
     * The per-sample gradients in SGD have **huge magnitude and variance** due to the lack of a $1/n$ factor and the large scale of `x`.
@@ -70,13 +70,13 @@ Classical momentum was implemented to help accelerate convergence, especially in
 * A single learning rate works well for both parameters. Here, momentum's primary role is **acceleration**, not stabilization.
 
 
-### **4.2 Full-Batch GD with Momentum: Pure Acceleration **
+### **4.2 Full-Batch GD with Momentum: Pure Acceleration**
 * **Numbers:** Converged in **$154.8 \pm 10.0$ steps**, an **~8x speedup** compared to vanilla GD (~1289 steps).
 * **Why it works:** On a well-conditioned quadratic, momentum reduces the effective spectral radius of the iteration. The deterministic gradients allow the velocity to accumulate signal, leading to clean, linear convergence with a larger effective step.
 
 
 
-### **4.3 Stochastic GD with Momentum: When Momentum Hurts **
+### **4.3 Stochastic GD with Momentum: When Momentum Hurts**
 * **Numbers:** Took **$68,426 \pm 37,910$ steps** on average. This is significantly **worse** than vanilla SGD (~15k steps).
 * **Why it happens:**
     * In this well-conditioned bowl, the main bottleneck is **gradient variance**, not geometry.
