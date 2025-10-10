@@ -45,7 +45,7 @@ Classical momentum was implemented to help accelerate convergence, especially in
 
 ## **3. Results on Ill-Conditioned Data (Dataset 1)**
 
-### **3.1 Vanilla GD & SGD: Divergence **
+### **3.1 Vanilla GD & SGD: Divergence**
 * **Observation:** With a learning rate of $\eta=10^{-2}$, both GD and SGD **failed to converge** and hit the step cap.
 * **Reason:** The learning rate was too large for the high curvature of the loss surface. The parameters consistently overshot the minimum, causing the loss to explode. The problem's high condition number ($\kappa \approx 1.03 \times 10^6$) requires an extremely small learning rate for vanilla GD to be stable.
 
