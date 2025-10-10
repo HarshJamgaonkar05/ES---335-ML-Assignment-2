@@ -45,7 +45,6 @@ When optimizing the low-rank factors, the choice of algorithm such as Alternatin
 
 The most significant advantage of ALS is its computational efficiency. **ALS consistently converges in far fewer iterations than Gradient Descent.** This rapid convergence makes it a highly efficient and practical algorithm. In summary, while Gradient Descent may provide more accurate reconstructions for structured missing data, ALS offers a much faster solution that excels when missing pixels are scattered randomly.
 
-
 ---------------------------------
 
 
@@ -82,3 +81,9 @@ The rank `r` acts as a bottleneck, controlling the amount of information that ca
 ### 3. Conclusion
 
 This effectively illustrates the core trade-off in low-rank data compression. Low-rank factorization is an excellent and highly efficient method for compressing regions of an image that are simple or repetitive (e.g., sky, walls, blurry backgrounds). However, it struggles to preserve quality in complex regions with sharp edges and fine textures unless a sufficiently high rank is used, which in turn diminishes the benefit of compression. The choice of an optimal rank `r` is therefore a critical decision that depends on the specific content of the data and the desired balance between compression ratio and reconstruction fidelity.
+
+
+
+
+
+**Note** : The results in the form of images can also be seen in the notebook itself or the results folder
