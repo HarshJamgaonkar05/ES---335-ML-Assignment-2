@@ -1,7 +1,7 @@
 ## **Observations — Dataset 1 (Vanilla GD & SGD)**
 
 **Ground truth**
-- Closed-form minimizer: $$\theta^{*} = [b^{*}, w^{*}] \approx[0.951, 99.984]$$.
+- Closed-form minimizer: $$\theta^{\*} = [b^{\*}, w^{\*}] \approx[0.951, 99.984]$$.
 
 
 #### **1) Non-convergence & step cap**
@@ -88,7 +88,7 @@
 
 **True minimizer (closed-form solution):**
 
-$$ \theta^* = [b^*, w^*] = [3.951, 2.682] $$
+$$ \theta^\* = [b^\*, w^\*] = [3.951, 2.682] $$
 
 This represents the best-fit line $y = 2.68x + 3.95$, which is consistent with the data-generation equation $y = 3x + 4 + \text{noise}$.
 
