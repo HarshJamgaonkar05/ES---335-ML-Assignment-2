@@ -1,8 +1,6 @@
-# Assignment Q3 Subjective Answers: Autoregressive Modeling
+# Question 3: Working with Autoregressive Modeling [2 Marks]
 
-## Question 3: Working with Autoregressive Modeling [2 Marks]
-
-### Implementation Overview
+### Overview
 
 I implemented autoregressive (AR) models using linear regression to forecast daily minimum temperatures from the dataset. The approach involves using previous temperature values as features to predict the next day's temperature. This is auto regressive modeling.
 
@@ -46,41 +44,22 @@ The AR models learned meaningful relationships:
 #### Key Observations from Plots
 - **Good fit:** Predictions closely follow true temperature patterns
 - **Captures trends:** Model successfully captures both short-term fluctuations and longer patterns
-- **Seasonal behavior:** Some evidence of capturing seasonal temperature variations
 
-### Technical Insights
+### Inferences
 
-#### Why AR(3) Performed Best
+#### AR(3) performed the best as:
 1. **More context:** Uses 3 previous days providing richer temporal information
 2. **Better pattern recognition:** Captures short-term weather patterns better
-3. **Balanced complexity:** Not too simple (AR(1)) nor overly complex
+3. **Balanced complexity:** Neither simple nor overly complex
 
 #### Model Strengths
 - **Simplicity:** Linear regression is interpretable and computationally efficient
-- **Temporal dependence:** Successfully captures day-to-day temperature correlations
-- **Real-world applicability:** RMSE ~3.65°C is reasonable for weather forecasting
+- **Temporal variation:** Successfully captures day-to-day temperature correlations
 
-#### Limitations
-- **Linear assumption:** Weather patterns may have non-linear relationships
-- **Limited features:** Only uses temperature history, ignores other weather factors
-- **Short-term only:** Designed for next-day prediction, not long-term forecasting
+#### One limitation might be that:
+- This model onl takes into consideration the temperatur values of the previous days to predict. Other factors affecting temp are lost.
 
-### Practical Applications
-
-1. **Short-term weather forecasting:** Next-day temperature prediction
-2. **Agricultural planning:** Crop management based on temperature forecasts
-3. **Energy management:** Heating/cooling demand estimation
-4. **Baseline model:** Foundation for more complex weather prediction systems
-
-### Future Improvements
-
-1. **Non-linear models:** LSTM, polynomial regression for complex patterns
-2. **Multivariate features:** Include humidity, pressure, wind speed
-3. **Seasonal decomposition:** Explicitly model seasonal components
-4. **Ensemble methods:** Combine multiple AR models for better accuracy
 
 ### Conclusion
 
-The autoregressive approach successfully demonstrates temperature forecasting using historical data. AR(3) achieved the best performance with RMSE of 3.65°C, proving that recent temperature history contains valuable predictive information. The implementation meets all assignment requirements and provides a solid foundation for time series forecasting.
-
-**Key Achievement:** Successfully implemented and evaluated autoregressive models for temperature forecasting, with clear visualization matching the required demonstration plot format.
+The autoregressive approach successfully demonstrates temperature forecasting using historical data. AR(3) achieved the best performance with RMSE of 2.3224°C, proving that recent temperature history contains valuable predictive information. 
