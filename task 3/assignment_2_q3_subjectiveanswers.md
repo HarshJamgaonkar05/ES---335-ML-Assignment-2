@@ -59,7 +59,6 @@ The AR models learned meaningful relationships:
 #### One limitation might be that:
 - This model onl takes into consideration the temperatur values of the previous days to predict. Other factors affecting temp are lost.
 
-
 ### Conclusion
 
 The autoregressive approach successfully demonstrates temperature forecasting using historical data. AR(3) achieved the best performance with RMSE of 2.3224°C, proving that recent temperature history contains valuable predictive information. 
