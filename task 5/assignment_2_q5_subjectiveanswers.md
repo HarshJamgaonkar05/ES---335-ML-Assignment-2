@@ -38,9 +38,10 @@ I implemented a custom logistic regression classifier (`LogisticTorch`) from scr
 
 #### Model Performance Comparison
 Based on the implementation results:
-- **LogisticTorch Accuracy:** ~0.850
-- **Sklearn LogisticRegression Accuracy:** ~0.850
-- **Performance Difference:** ~0.00
+- **LogisticTorch Accuracy:** 0.8550 (85.50%)
+- **Sklearn LogisticRegression Accuracy:** 0.8500 (85.00%)
+- **Performance Difference:** 0.0050 (0.50%)
+- **Final Training Loss:** 0.316948
 
 ### Visualization Analysis
 
@@ -69,11 +70,12 @@ Based on the implementation results:
 ### Custom vs Sklearn Implementation
 
 **Similarities:**
-- Both achieve ~85% accuracy
+- Both achieve high accuracy (85.50% vs 85.00%)
 - Similar decision boundaries
 - Comparable probability distributions
 
 **Differences:**
+- **Performance:** LogisticTorch slightly outperforms sklearn (0.50% higher accuracy)
 - **Optimization:** Sklearn uses more sophisticated solvers (lbfgs)
 - **Features:** Sklearn includes regularization, multiple solvers, class balancing
 - **Robustness:** Sklearn handles edge cases and numerical stability better
@@ -81,4 +83,4 @@ Based on the implementation results:
 
 ### Conclusion
 
-The custom PyTorch implementation successfully demonstrates logistic regression from first principles, achieving performance comparable to sklearn's optimized implementation. The 85.00% accuracy on the make_moons dataset validates the correctness of the implementation. The decision boundary visualizations show that both models learn similar classification strategies, confirming the mathematical similarity of both the approaches.
+The custom PyTorch implementation successfully demonstrates logistic regression from first principles, achieving performance that slightly exceeds sklearn's optimized implementation (85.50% vs 85.00%). The high accuracy on the make_moons dataset validates the correctness of the implementation, with the final training loss converging to 0.317. The decision boundary visualizations show that both models learn similar classification strategies, confirming the mathematical similarity of both approaches.
